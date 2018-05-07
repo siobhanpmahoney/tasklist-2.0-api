@@ -1,0 +1,2 @@
+module StatusDetailsHelper
+end

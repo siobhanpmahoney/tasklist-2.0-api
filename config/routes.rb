@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
+
   namespace :api do
     namespace :v1 do
       resources :users, param: :username
       resources :pages
       resources :tags
-      resources :statuses
+      resources :status_details
       resources :tasks
     end
   end
