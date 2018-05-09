@@ -23,5 +23,9 @@ class User
   accepts_nested_attributes_for :tasks
   accepts_nested_attributes_for :pages
 
+  def user_tasks
+    self.tasks
+  end
+
 
 end

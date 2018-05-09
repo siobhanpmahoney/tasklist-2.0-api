@@ -9,6 +9,5 @@ class Page
   has_and_belongs_to_many :tags, autosave: true
 
   accepts_nested_attributes_for :tasks
-  accepts_nested_attributes_for :users
   accepts_nested_attributes_for :tags
 end

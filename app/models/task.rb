@@ -14,6 +14,8 @@ class Task
   has_and_belongs_to_many :pages, autosave: true
   has_and_belongs_to_many :users, autosave: true
 
+  accepts_nested_attributes_for :status_details
+
 
 
   accepts_nested_attributes_for :tags

@@ -14,6 +14,7 @@ class Api::V1::UsersController < ApplicationController
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
+
     if @user
       render json: @user
     else
@@ -23,7 +24,8 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:username])
-    render json: @user
+    user_info = {user: @user, tasks: @user.user_tasks}
+    render json: user_info
   end
 
   private
@@ -36,8 +38,19 @@ class Api::V1::UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
+      task_ids: [],
+      tasks_attributes: [
+        :title,
+        :description,
+        :github_branch,
+        :priority,
+        :status_summary,
+      ],
       page_ids: [],
-      pages_attributes: []
+      pages_attributes: [
+        :path,
+        :title
+      ]
     )
   end
 
