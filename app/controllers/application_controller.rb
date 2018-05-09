@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
   end
 
   def login_user(username, password)
+
     user = User.find_by(username: username)
     if user && user.authenticate(password)
       user
@@ -14,10 +15,12 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
+
     @current_user ||= User.find_by(id: user_id_from_token(token))
   end
 
   def user_id_from_token(token)
+    
     decode_token(token).first['user_id']
   end
 

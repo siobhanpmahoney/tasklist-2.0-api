@@ -1,12 +1,14 @@
 class Api::V1::AuthController < ApplicationController
 
   def login
+    
    begin
      user = login_user(params[:username], params[:password])
+
      render json: {
-       id: user.id,
+       id: user.id.to_s,
        username: user.username,
-       token: encode_token({'user_id': user.id})
+       token: encode_token({'user_id': user.id.to_s})
      }
    rescue AuthError => e
      render json: { error: e.msg }, status: 401
