@@ -21,4 +21,21 @@ class Task
   accepts_nested_attributes_for :tags
   accepts_nested_attributes_for :pages
   accepts_nested_attributes_for :users
+
+
+  def task_tags
+    self.tags
+  end
+
+  def task_pages
+    self.pages
+  end
+
+  def task_users
+    self.users
+  end
+
+  def task_info
+    {task: self, tags: self.task_tags, pages: self.task_pages, users: self.task_users}
+  end
 end

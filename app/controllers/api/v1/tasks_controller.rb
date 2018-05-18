@@ -2,16 +2,24 @@ class Api::V1::TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-    render json: @tasks
+    all_task_info = @tasks.map { |t| t.task_info }
+    render json: all_task_info
   end
 
   def create
-    @task = Task.create
+
+    @task = Task.create(title: params[:title], description: params[:description], priority: params[:priority], status_summary: params[:status_summary])
     render json: @task
   end
 
   def show
-    @show = Task.find(params[:id])
+    @task = Task.find(params[:id])
+    render json: @task
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    @task.update(task_params)
     render json: @task
   end
 
@@ -24,7 +32,12 @@ class Api::V1::TasksController < ApplicationController
       :github_branch,
       :priority,
       :status_summary,
-      status_details: {},
+      status_detail_ids: [],
+      status_details_attributes: [
+        :description,
+        :flag,
+        :latest_update
+        ],
       tag_ids: [],
       tags_ids: [
         :title
