@@ -9,7 +9,11 @@ class Api::V1::TasksController < ApplicationController
   def create
 
     @task = Task.create(title: params[:title], description: params[:description], priority: params[:priority], status_summary: params[:status_summary])
-    render json: @task
+    @task.tags << Tag.all[0]
+    @task.users << User.all[0]
+    @task.pages << Page.all[0]
+    task_info = @task.task_info
+    render json: task_info
   end
 
   def show
