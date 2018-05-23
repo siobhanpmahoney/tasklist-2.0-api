@@ -25,7 +25,8 @@ class Api::V1::TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update(task_params)
-    render json: @task
+    task_info = @task.task_info
+    render json: task_info
   end
 
   private
