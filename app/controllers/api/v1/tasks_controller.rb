@@ -7,11 +7,16 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
+    puts params
 
     @task = Task.create(title: params[:title], description: params[:description], priority: params[:priority], status_summary: params[:status_summary])
-    @task.tags << Tag.all[0]
-    @task.users << User.all[0]
-    @task.pages << Page.all[0]
+
+    @task.find_save_pages(params[:rel_pages])
+    @task.find_save_tags(params[:rel_tags])
+    @task.find_save_users(params[:rel_users])
+    # @task.tags << Tag.all[0]
+    # @task.users << User.all[0]
+    # @task.pages << Page.all[0]
     task_info = @task.task_info
     render json: task_info
   end

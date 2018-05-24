@@ -38,4 +38,27 @@ class Task
   def task_info
     {task: self, tags: self.task_tags, pages: self.task_pages, users: self.task_users}
   end
+
+  def find_save_tags(rel_tags)
+    rel_tags.each do |t|
+      @tag = Tag.all.find_or_create_by(title: t)
+      self.tags << @tag
+    end
+  end
+
+  def find_save_pages(rel_pages)
+    rel_pages.each do |p|
+      @page = Page.all.find_or_create_by(path: p)
+      self.pages << @page
+    end
+  end
+
+  def find_save_users(rel_users)
+    rel_users.each do |u|
+      @user = User.all.find_by(username: u)
+      self.users << @user
+    end
+
+  end
+
 end
