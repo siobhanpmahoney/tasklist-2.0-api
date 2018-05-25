@@ -28,9 +28,11 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
+    puts params
     @task = Task.find(params[:id])
-    @task.update(task_params)
+    @task.update(title: params[:title], description: params[:description], github_branch: params[:github_branch], status_summary: params[:status_summary] )
     task_info = @task.task_info
+    puts @task.status_summary
     render json: task_info
   end
 
