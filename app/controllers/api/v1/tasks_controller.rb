@@ -7,7 +7,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    puts params
+    puts params[:status_summary]
 
     @task = Task.create(title: params[:title], description: params[:description], priority: params[:priority], status_summary: params[:status_summary])
 
