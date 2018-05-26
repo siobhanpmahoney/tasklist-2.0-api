@@ -1,5 +1,20 @@
 class Api::V1::TasksController < ApplicationController
 
+  def task_page
+    @task = Task.all.find(params[:id])
+    @page = Page.all.find(params[:page_id])
+    task_page = @task.pages.find(@page._id)
+    render json: task_page
+  end
+
+  def destroy_task_page
+    @task = Task.find(params[:id])
+    @page = Page.find(params[:page_id])
+    @task.pages.delete(@page)
+    puts @task.pages
+    render json: {alert: "job deleted"}
+  end
+
   def index
     @tasks = Task.all
     all_task_info = @tasks.map { |t| t.task_info }
@@ -32,7 +47,7 @@ class Api::V1::TasksController < ApplicationController
 
     @task = Task.find(params[:id])
     @task.update(title: params[:title], description: params[:description], priorty: params[:priority], github_branch: params[:github_branch], status_summary: params[:status_summary] )
-    
+
     @task.find_save_update_pages(params[:rel_pages])
     @task.find_save_update_tags(params[:rel_tags])
     task_info = @task.task_info
@@ -40,6 +55,10 @@ class Api::V1::TasksController < ApplicationController
 
     render json: task_info
   end
+
+  # custom methods
+
+
 
   private
 
