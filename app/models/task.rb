@@ -61,4 +61,28 @@ class Task
 
   end
 
+  def find_save_update_tags(rel_tags)
+    rel_tags.each do |t|
+      @tag = Tag.all.find_or_create_by(title: t["title"])
+      self.tags << @tag
+    end
+  end
+
+  def find_save_update_pages(rel_pages)
+    rel_pages.each do |p|
+
+        @page = Page.all.find_or_create_by(path: p["path"])
+        self.pages << @page
+
+    end
+  end
+
+  def find_save_update_users(rel_users)
+    rel_users.each do |u|
+      @user = User.all.find_by(username: u)
+      self.users << @user
+    end
+
+  end
+
 end

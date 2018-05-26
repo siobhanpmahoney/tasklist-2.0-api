@@ -29,10 +29,15 @@ class Api::V1::TasksController < ApplicationController
 
   def update
     puts params
+
     @task = Task.find(params[:id])
-    @task.update(title: params[:title], description: params[:description], github_branch: params[:github_branch], status_summary: params[:status_summary] )
+    @task.update(title: params[:title], description: params[:description], priorty: params[:priority], github_branch: params[:github_branch], status_summary: params[:status_summary] )
+    
+    @task.find_save_update_pages(params[:rel_pages])
+    @task.find_save_update_tags(params[:rel_tags])
     task_info = @task.task_info
     puts @task.status_summary
+
     render json: task_info
   end
 
