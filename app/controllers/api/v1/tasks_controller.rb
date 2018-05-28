@@ -15,6 +15,21 @@ class Api::V1::TasksController < ApplicationController
     render json: {alert: "job deleted"}
   end
 
+  def task_tag
+    @task = Task.all.find(params[:id])
+    @tag = Tag.all.find(params[:tag_id])
+    task_tag = @task.tags.find(@tag._id)
+    render json: task_tag
+  end
+
+  def destroy_task_tag
+    @task = Task.find(params[:id])
+    @tag = @task.tags.find(params[:tag_id])
+    @task.tags.delete(@tag)
+    puts @task.tags
+    render json: {alert: "job deleted"}
+  end
+
   def index
     @tasks = Task.all
     all_task_info = @tasks.map { |t| t.task_info }
@@ -76,7 +91,7 @@ class Api::V1::TasksController < ApplicationController
         :latest_update
         ],
       tag_ids: [],
-      tags_ids: [
+      tags_attributes: [
         :title
       ],
       page_ids: [],

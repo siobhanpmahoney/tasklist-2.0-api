@@ -11,6 +11,8 @@ Rails.application.routes.draw do
         resources :status_details
       end
 
+
+      get '/tasks/:id/pages/:page_id', to: 'tasks#task_page'
       delete '/tasks/:id/pages/:page_id', to: 'tasks#destroy_task_page'
 
       get '/tasks/:id/tags/:tag_id', to: 'tasks#task_tag'
