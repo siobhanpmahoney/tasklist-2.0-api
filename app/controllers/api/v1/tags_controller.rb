@@ -18,7 +18,7 @@ class Api::V1::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit (
+    params.require(:tag).permit(
       :title,
       task_ids: [],
       tasks_attributes: [
