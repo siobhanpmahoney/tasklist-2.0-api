@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get '/tasks/:id/tags/:tag_id', to: 'tasks#task_tag'
       delete '/tasks/:id/tags/:tag_id', to: 'tasks#destroy_task_tag'
 
+      get '/tasks/:id/users/:user_id', to: 'tasks#task_user'
+      delete '/tasks/:id/users/:user_id', to: 'tasks#destroy_task_user'
+
 
 
       post '/login', to: 'auth#login'

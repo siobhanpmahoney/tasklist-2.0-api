@@ -55,7 +55,7 @@ class Task
 
   def find_save_users(rel_users)
     rel_users.each do |u|
-      @user = User.all.find_by(username: u)
+      @user = User.find_by(username: u)
       self.users << @user
     end
 
@@ -70,7 +70,6 @@ class Task
 
   def find_save_update_pages(rel_pages)
     rel_pages.each do |p|
-
         @page = Page.all.find_or_create_by(path: p["path"])
         self.pages << @page
 
@@ -79,7 +78,7 @@ class Task
 
   def find_save_update_users(rel_users)
     rel_users.each do |u|
-      @user = User.all.find_by(username: u)
+      @user = User.all.find_by(username: u["username"])
       self.users << @user
     end
 
