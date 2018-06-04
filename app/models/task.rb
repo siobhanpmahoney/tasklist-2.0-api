@@ -3,6 +3,8 @@ class Task
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
 
+
+
   field :title, type: String
   field :description, type: String
   field :github_branch, type: String
@@ -10,17 +12,17 @@ class Task
   field :status_summary, type: String
 
   embeds_many :status_details
-  has_and_belongs_to_many :tags, autosave: true
-  has_and_belongs_to_many :pages, autosave: true
-  has_and_belongs_to_many :users, autosave: true
+  has_and_belongs_to_many :tags, autosave: true, index: true
+  has_and_belongs_to_many :pages, autosave: true, index: true
+  has_and_belongs_to_many :users, autosave: true, index: true
 
   accepts_nested_attributes_for :status_details
-
-
-
   accepts_nested_attributes_for :tags
   accepts_nested_attributes_for :pages
   accepts_nested_attributes_for :users
+
+
+
 
 
   def task_tags

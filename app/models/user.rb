@@ -7,7 +7,6 @@ class User
   include Mongoid::Timestamps
 
 
-
   field :first_name, type: String
   field :last_name, type: String
   field :username, type: String
@@ -21,8 +20,8 @@ class User
   validates :password, presence: true
 
 
-  has_and_belongs_to_many :tasks, autosave: true
-  has_and_belongs_to_many :pages, autosave: true
+  has_and_belongs_to_many :tasks, autosave: true, index: true
+  has_and_belongs_to_many :pages, autosave: true, index: true
 
   accepts_nested_attributes_for :tasks
   accepts_nested_attributes_for :pages
@@ -30,6 +29,8 @@ class User
   def user_tasks
     self.tasks
   end
+
+
 
 
 end
