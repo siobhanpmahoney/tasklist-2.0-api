@@ -169,10 +169,11 @@ test:
 production:
     clients:
         default:
+          uri: <%= ENV['MONGOLAB_URI'] %>
           database: task_lister20_test
           hosts:
             - localhost:27017
-            uri: <%= ENV['MONGOLAB_URI'] %>
+
         options:
             skip_version_check: true
         safe: true
