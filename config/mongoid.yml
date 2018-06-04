@@ -169,6 +169,9 @@ test:
 production:
     clients:
         default:
+          database: task_lister20_test
+          hosts:
+            - localhost:27017
             uri: <%= ENV['MONGOLAB_URI'] %>
         options:
             skip_version_check: true
