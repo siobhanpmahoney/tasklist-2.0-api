@@ -169,7 +169,7 @@ test:
 production:
     clients:
         default:
-          uri: <%= ENV['MONGOLAB_URI'] %>
+          uri: <%= ENV['MONGODB_URI'] %>
           database: task_lister20_test
           hosts:
             - localhost:27017
