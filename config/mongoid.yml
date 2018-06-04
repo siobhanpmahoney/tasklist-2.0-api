@@ -170,7 +170,7 @@ production:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
     options:
-      database: task_lister20_test
+      database: task_lister20_production
       hosts:
           - ds147890.mlab.com:47890
       skip_version_check: true
