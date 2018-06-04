@@ -170,5 +170,8 @@ production:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
     options:
+      database: task_lister20_test
+      hosts:
+          - localhost:27017
       skip_version_check: true
       safe: true
