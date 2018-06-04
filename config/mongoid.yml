@@ -173,7 +173,6 @@ production:
           database: task_lister20_test
           hosts:
             - localhost:27017
-
         options:
             skip_version_check: true
         safe: true
