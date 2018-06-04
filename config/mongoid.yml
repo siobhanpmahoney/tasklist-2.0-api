@@ -169,8 +169,7 @@ test:
 production:
     clients:
         default:
-            uri: &lt;%= ENV['mongodb://heroku_9bv4j9fr:1mqohceat72rao8spo1iu7rd44@ds147890.mlab.com:47890/heroku_9bv4j9fr
-'] %&gt;
+            uri: <%= ENV['MONGOLAB_URI'] %>
         options:
             skip_version_check: true
         safe: true
