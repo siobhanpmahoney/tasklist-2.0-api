@@ -4,6 +4,8 @@ class User
   include Mongoid::Document
   include ActiveModel::SecurePassword
   include Mongoid::Attributes::Dynamic
+  include Mongoid::Timestamps
+
 
 
   field :first_name, type: String

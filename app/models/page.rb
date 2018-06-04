@@ -1,6 +1,8 @@
 class Page
   include Mongoid::Document
   include Mongoid::Attributes::Dynamic
+  include Mongoid::Timestamps
+
   field :path, type: String
   field :title, type: String
 
